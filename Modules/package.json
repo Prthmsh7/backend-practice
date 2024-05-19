@@ -1,0 +1,12 @@
+{
+  "name": "learning-modules",
+  "version": "1.0.0",
+  "description": "learning the concept of modules",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "learningmodules":"node main.js"
+  },
+  "author": "PRA7HMESH",
+  "license": "ISC"
+}
