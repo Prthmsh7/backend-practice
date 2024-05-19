@@ -1,0 +1,12 @@
+{
+  "name": "hellonodejs",
+  "version": "1.0.0",
+  "description": "This package contains the files created while I made my first package",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "learning": "node main.js"
+  },
+  "author": "PRA7HMESH",
+  "license": "ISC"
+}
