@@ -1,0 +1,30 @@
+hat You Should Be Able to Build Now
+
+If you cannot, you are not ready to move on:
+
+Mini assignment (mandatory):
+
+Build a function that:
+
+	•	Accepts an array of users
+	•	Filters users above age 18
+	•	Returns their names in a new array
+
+This checks:
+	•	Arrays
+	•	Loops
+	•	Conditionals
+	•	Functions
+	•	Object
+
+function assignment(users){
+    return users.filter(u=> u.age > 18).map(u=>u.name);
+}
+
+or 
+using arrow function
+
+const assignment = users => 
+    users
+        .filter(u=>u.age>18)
+        .map(u=>u.name);
