@@ -1,4 +1,4 @@
-hat You Should Be Able to Build Now
+Assignment
 
 If you cannot, you are not ready to move on:
 
@@ -28,3 +28,8 @@ const assignment = users =>
     users
         .filter(u=>u.age>18)
         .map(u=>u.name);
+
+
+function assignment(users){
+    return users.filter(u=>u.age>18).map(u=>u.name);
+}
