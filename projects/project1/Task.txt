@@ -1,1 +1,25 @@
 REST Api - JSON
+
+
+
+- Okay so a good practice!
+- When we have the /users , we'll get the html
+- when we have /api/users we'll get the json
+
+/api/users - For Client Side Rendering 
+/users - For Server Side Rendering
+
+- this is a goood practice!
+
+
+- now Dynamic Path Parameters 
+- :id -> This colon means that it's a variable|Dynamic
+
+
+GET /api/users/1 - Get all the users with ID 1
+GET /api/users/2 - Get all the users with ID 2
+
+POST /api/users - Create new users
+PATCH /api/users/1 - Edit the user with ID 1
+DELETE /api/users/1 - Delete the user with ID 1
+
