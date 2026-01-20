@@ -52,7 +52,7 @@ app.route("/api/users/:id")
     const id = Number(req.params.id);
     const body = req.body;
     const userIndex = users.findIndex(u => u.id === id);
-    if(userIndex == -1){
+    if(userIndex === -1){
         return res.status(404).json({status:"fail"});
     }
     users[userIndex] = {
@@ -64,7 +64,19 @@ app.route("/api/users/:id")
     })
 })
 .delete((req,res)=>{
-    return res.json({status:"pending"});
+  
+    const id = Number(req.params.id);
+    const userIndex = users.findIndex(u=>u.id===id);
+    if(userIndex=== -1){
+        return res.status(404).json({status:"fail"});
+    }
+    users.splice(userIndex, 1);
+    fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => {
+        if (err) {
+            return res.status(500).json({ status: "error" });
+        }
+        return res.json({ status: "success" });
+    });
 })
 
 
@@ -73,7 +85,7 @@ app.post('/api/users',(req,res)=>{
     const body = req.body;
     users.push({...body,id:users.length+1});
     fs.writeFile('./MOCK_DATA.json',JSON.stringify(users),(err,data)=>{
-        return res.json({status:"success",id:users.length})
+        return res.json({status:"success, ",user: users[userIndex]})
     })
 });
 
