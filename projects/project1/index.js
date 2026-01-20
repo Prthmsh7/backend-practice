@@ -8,6 +8,18 @@ const PORT = 8000;
 //Middleware - Think of this as a plugin
 app.use(express.urlencoded({ extended:false}))
 
+// Creating a Middleware
+app.use((req,res,next)=>{
+    fs.appendFile("log.txt",`${Date.now()}:${req.method}:${req.path}`, (err,data)=>{
+        next();
+    });
+
+    // To end the response here only without calling the next function
+    // return res.json({msg:"Hello from middleware 1"})
+    next();
+})
+
+
 // REST API
 
 // Server side rendering example
