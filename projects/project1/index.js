@@ -93,40 +93,54 @@ app.get("/api/users", (req, res) => {
 
 app
   .route("/api/users/:id")
-  .get((req, res) => {
-    const id = Number(req.params.id);
-    const user = users.find((user) => user.id === id);
+  .get(async(req, res) => {
+    // When Local DB
+    // const id = Number(req.params.id);
+    // const user = users.find((user) => user.id === id);
+
+    // When using mongoDB
+    const user = await User.findByID(req.params.id);
     if(!user) return res.status(404).json({msg:"No User Found"});
     return res.json(user);
   })
-  .patch((req, res) => {
-    const id = Number(req.params.id);
-    const body = req.body;
-    const userIndex = users.findIndex((u) => u.id === id);
-    if (userIndex === -1) {
-      return res.status(404).json({ status: "fail" });
-    }
-    users[userIndex] = {
-      ...users[userIndex],
-      ...body,
-    };
-    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-      return res.json({ status: "success", id: users.length });
-    });
+  .patch(async(req, res) => {
+    // for local db
+    // const id = Number(req.params.id);
+    // const body = req.body;
+    // const userIndex = users.findIndex((u) => u.id === id);
+    // if (userIndex === -1) {
+    //   return res.status(404).json({ status: "fail" });
+    // }
+    // users[userIndex] = {
+    //   ...users[userIndex],
+    //   ...body,
+    // };
+    // fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+    //   return res.json({ status: "success", id: users.length });
+    // });
+
+    // when using mongoDB
+    const user = await User.findByIdAndUpdate(req.params.id,{lastName: "Changed"});
+    return res.json({ status: "success" });
   })
-  .delete((req, res) => {
-    const id = Number(req.params.id);
-    const userIndex = users.findIndex((u) => u.id === id);
-    if (userIndex === -1) {
-      return res.status(404).json({ status: "fail" });
-    }
-    users.splice(userIndex, 1);
-    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
-      if (err) {
-        return res.status(500).json({ status: "error" });
-      }
-      return res.json({ status: "success" });
-    });
+  .delete(async(req, res) => {
+    // for local db
+    // const id = Number(req.params.id);
+    // const userIndex = users.findIndex((u) => u.id === id);
+    // if (userIndex === -1) {
+    //   return res.status(404).json({ status: "fail" });
+    // }
+    // users.splice(userIndex, 1);
+    // fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
+    //   if (err) {
+    //     return res.status(500).json({ status: "error" });
+    //   }
+    //   return res.json({ status: "success" });
+    // });
+
+    // When using mongoDB
+    const user = await User.findByIdAndDelete(req.params.id);
+    return res.json({ status: "success" });
   });
 
 app.post("/api/users", (req, res) => {
